@@ -4,10 +4,11 @@
 
 #### 使用介绍
 git clone https://github.com/Jesse121/crawler.git
-建好相关数据表
-在boss文件夹下MYSQL.sql中有已写好的sql语句，根据自己想要爬取的内容选择相应的建表语句，也可以自己写建表语句
-这里我们以前端开发为例
-在命令行中执行以下内容
+
+建好相关数据表   
+在boss文件夹下MYSQL.sql中有已写好的sql语句，根据自己想要爬取的内容选择相应的建表语句，也可以自己写建表语句  
+这里我们以前端开发为例  
+在命令行中执行以下内容  
 ```
 -- 创建数据库
 CREATE DATABASE IF NOT EXISTS boss;
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `fed`(
     `description` LONGTEXT NOT NULL COMMENT '职位描述'
 )ENGINE=INNODB CHARSET=UTF8;
 ```
-至此用于存储爬取内容的数据库及数据表已建好，接下来需安装相关依赖包并执行爬虫程序
+至此用于存储爬取内容的数据库及数据表已建好，接下来需安装相关依赖包并执行爬虫程序  
 如果需要爬取其他内容需修改请求链接，建立新的数据表，修改add函数中数据表名
 ```
 //安装依赖包
@@ -39,5 +40,3 @@ npm start
 * superagent根据请求链接去请求相关页面
 * cheerio根据请求的返回结果，从中提取要爬取的字段
 * mysql将提取的字段存入数据库
-
-
