@@ -1,10 +1,10 @@
 {
   "name": "crawler",
   "version": "1.0.0",
-  "description": "get data from lagou",
+  "description": "get data from boss",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node boss/index.js"
   },
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "node",
-    "lagou"
+    "boss"
   ],
   "author": "jesse",
   "license": "ISC",

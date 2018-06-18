@@ -12,7 +12,6 @@ const timer = setInterval(()=>{
     superagent
         .post(reptileUrl)
         .type('form')//支持form格式
-        // .send({ first:isFirst, pn:i, kd:'web前端'})
         .send({ first:isFirst, pn:i, kd:'PHP'})
         //通过构造referer，避开服务器验证
         .set('Referer', 'https://www.lagou.com/jobs/list_web%E5%89%8D%E7%AB%AF?px=default&gj=3-5%E5%B9%B4&city=%E6%B7%B1%E5%9C%B3')
@@ -39,15 +38,6 @@ const timer = setInterval(()=>{
                     throw err;
                 })
                 .then(()=>{
-                    // console.log(positionName);
-                    // console.log(salary);
-                    // console.log(companyName);
-                    // console.log(companySize);
-                    // console.log(industryField);
-                    // console.log(createTime);
-                    // console.log(description);
-                    // console.log(address);
-
                     if(description && address){
                         //连接数据库
                         let connection = mysql.createConnection({
@@ -102,17 +92,3 @@ function add(con,paramsArr) {
         console.log('INSERT ID:', result.insertId);
     });
 }
-
-
-
-
-
-//发起get请求
-// const reptileUrl = 'http://www.lagou.com/';
-// superagent.get(reptileUrl).end((err,res) => {
-//         if (err) throw err;
-//         fs.writeFile('./response.txt', res.text, (err) => {
-//             if (err) throw err;
-//             console.log('写文件成功');
-//         });
-//     });

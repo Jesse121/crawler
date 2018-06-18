@@ -1,18 +1,20 @@
 const superagent = require('superagent');
 const cheerio = require('cheerio');
 const mysql = require('mysql');
-// const fs = require('fs');
 
-let i = 1;
+let i = 1;//当前页数
 const timer = setInterval(function(){
     //爬取地址   boss直聘 请求参数 深圳 web前端 3~5年经验
-    // const reptileUrl = "https://www.zhipin.com/c101280600-p100901/e_105/?page="+i;
+    const reptileUrl = "https://www.zhipin.com/c101280600-p100901/e_105/?page="+i;
+
     //爬取地址   boss直聘 请求参数 深圳 php 3~5年经验
-    // const reptileUrl = "https://www.zhipin.com/c101280600-p100103/e_105/?page"+i;
+    // const reptileUrl = "https://www.zhipin.com/c101280600-p100103/e_105/?page="+i;
+
     //爬取地址   boss直聘 请求参数 深圳 nodejs 3~5年经验
-    // const reptileUrl = "https://www.zhipin.com/c101280600-p100114/e_105/?page"+i;
-    //爬取地址   boss直聘 请求参数 深圳 python 1~3年经验
-    const reptileUrl = "https://www.zhipin.com/c101280600-p100109/e_104/?page"+i;
+    // const reptileUrl = "https://www.zhipin.com/c101280600-p100114/e_105/?page="+i;
+
+    //爬取地址   boss直聘 请求参数 深圳 python 1~3 年经验
+    // const reptileUrl = "https://www.zhipin.com/c101280600-p100109/e_104/?page="+i;
     //发起get请求
     superagent.get(reptileUrl).end((err, res)=>{
         // 抛错拦截
@@ -54,12 +56,6 @@ const timer = setInterval(function(){
                 throw err;
             })
             .then(()=>{
-                // console.log(jobName);
-                // console.log(salary);
-                // console.log(companyName);
-                // console.log(companyInfo);
-                // console.log(description);
-                // console.log(time);
                 //连接数据库
                 let connection = mysql.createConnection({
                     host: '127.0.0.1',
@@ -78,10 +74,10 @@ const timer = setInterval(function(){
         });
     });
     i++;
-    if(i>10){
+    if(i>10){//只有10页数据
         clearInterval(timer);
     }
-},3000);
+},3000);//每隔3s自动爬去下一页
 
 function getDes(url){
     var promise = new Promise((resolve,reject)=>{
@@ -98,7 +94,8 @@ function getDes(url){
 }
 //增加
 function add(con,paramsArr) {
-    var addSql = 'INSERT INTO python(jobName,salary,companyName,companyInfo,description,time) VALUES(?,?,?,?,?,?)';
+    //爬取别的内容时需求该表名fed与新建表明相同
+    var addSql = 'INSERT INTO fed(jobName,salary,companyName,companyInfo,description,time) VALUES(?,?,?,?,?,?)';
     con.query(addSql, paramsArr, (err, result)=>{
         if (err) {
             console.log('[INSERT ERROR] - ', err.message);
@@ -108,23 +105,3 @@ function add(con,paramsArr) {
     });
 }
 
-
-    // fs.writeFile('./response.json', res.text,'uft8',(err)=> {
-    //     if (err) throw err;
-    //     console.log('写文件成功');
-    // });
-
-
-//发起post请求
-// superagent
-//     .post(reptileUrl)
-//     .send({ first: true, pn: 1, kd: 'web前端' })
-//     // .set('X-API-Key', 'foobar')
-//     // .set('Accept', 'application/json')
-//     .end((res,err) => {
-//         // if (err) throw err;
-//         fs.writeFile('./response.json', res, (err) => {
-//             if (err) throw err;
-//             console.log('写文件成功');
-//         });
-//     });
