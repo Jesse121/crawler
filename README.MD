@@ -1,6 +1,7 @@
 ### nodejs爬虫，爬取boss直聘中招聘信息
 啥也不说，先上爬取结果
-![](http://o8l2fza1x.bkt.clouddn.com/%E5%89%8D%E7%AB%AF.png)
+![未命名](https://user-images.githubusercontent.com/12730273/56999930-f691a880-6be3-11e9-8535-052bbf120c79.png)
+
 
 #### 使用介绍
 git clone https://github.com/Jesse121/crawler.git
